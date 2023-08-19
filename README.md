@@ -46,13 +46,13 @@ Replace <dataset folder> with the path to your dataset.
 
 - `--quant`: whether to quantize the model.
 
-- `--ptf`: whether to use **Power-of-Two Factor Integer Layernorm**.
+- `--QADS`: whether to use **Quantization-Aware Distribution Scaling**
 
-- `--lis`: whether to use **Log-Integer-Softmax**.
+- `--ptf`: whether to use Power-of-Two Factor Integer Layernorm.
+
+- `--lis`: whether to use Log-Integer-Softmax.
 
 - `--quant-method`: quantization methods of activations, which can be chosen from `minmax`, `ema`, `percentile` and `omse`.
-
-- `--QADS`: 설명필요
 
 ---
 ---
