@@ -74,7 +74,7 @@ Replace <dataset folder> with the path to your dataset.
 ### Table 1: Comparison of top-1 accuracy with other quantization methods on the ImageNet-1k dataset
 
 | Model | Method | Prec. (W/A) | Size (MB) | Top-1 Acc. (%) | Acc. Drop (%) |   
-|-------|--------|-------------|-----------|---- --|- ----| 
+|-------|--------|-------------|-----------|------|-----| 
 | MobileViT-xxs | Baseline | 32/32 | 1.27M | 68.94 | - |    
 |               | FQ-ViT     | 8/8 | 0.32M | 66.46 | 2.48 |
 |               | Percentile | 8/8 | 0.32M | 67.54 | 1.40 |
