@@ -120,3 +120,8 @@ Replace <dataset folder> with the path to your dataset.
 | | Q-HyViT   | 8/8   | 74.36 | 1.25      |
 | | Ours      | 8/8   | 74.47 | 1.14      |
 
+
+
+## Contributing
+
+Our code is based on [FQ-ViT](https://github.com/megvii-research/FQ-ViT)
