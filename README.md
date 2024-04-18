@@ -124,4 +124,4 @@ Replace <dataset folder> with the path to your dataset.
 
 ## Contributing
 
-Our code is based on [FQ-ViT](https://github.com/megvii-research/FQ-ViT)
+Our code is based on [FQ-ViT](https://github.com/megvii-research/FQ-ViT). Our code is based on FQ-ViT. We sincerely thank the contributors of FQ-ViT for their outstanding work.
