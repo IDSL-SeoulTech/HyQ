@@ -68,22 +68,10 @@ Replace <dataset folder> with the path to your dataset.
 | Model | Method | Prec. (W/A) | Size (MB) | Top-1 Acc. (%) | Acc. Drop (%) |   
 |-------|--------|-------------|-----------|------|-----| 
 | MobileViT-xxs | Baseline | 32/32 | 1.27M | 68.94 | - |    
-|               | FQ-ViT     | 8/8 | 0.32M | 66.46 | 2.48 |
-|               | Percentile | 8/8 | 0.32M | 67.54 | 1.40 |
-|               | OMSE       | 8/8 | 0.32M | 66.69 | 2.25 |                   
-|               | Q-HyViT    | 8/8 | 0.32M | 67.20 | 1.74 | 
 |               | Ours       | 8/8 | 0.32M | 68.15 | 0.79 | 
 | MobileViT-xs  | Baseline | 32/32 | 2.32M | 74.63 | - |    
-|               | FQ-ViT     | 8/8 | 0.58M | 68.28 | 6.35 |
-|               | Percentile | 8/8 | 0.58M | 62.96 | 11.67 |
-|               | OMSE       | 8/8 | 0.58M | 68.41 | 6.22 |
-|               | Q-HyViT    | 8/8 | 0.58M | 73.89 | 0.75 |
 |               | Ours       | 8/8 | 0.58M | 73.99 | 0.64 | 
 | MobileViT-s   | Baseline | 32/32 | 5.58M | 78.32 | - |    
-|               | FQ-ViT     | 8/8 | 1.40M | 77.67 | 0.65 |
-|               | Percentile | 8/8 | 1.40M | 77.85 | 0.47 |
-|               | OMSE       | 8/8 | 1.40M | 77.61 | 0.71 |
-|               | Q-HyViT    | 8/8 | 1.40M | 77.72 | 0.59 | 
 |               | Ours       | 8/8 | 1.40M | 77.93 | 0.39 | 
 
 ### EfficientFormer and MobileViTv2
