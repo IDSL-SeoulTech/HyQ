@@ -43,11 +43,11 @@ To run the experiment, use the following command:
 
 ```
 cd HyQ
-python test_quant.py mobilevit_s <dataset folder> --quant --QADS --ptf --lis
+python test_quant.py mobilevit_xxs <dataset folder> --quant --QADS --ptf --lis
 ```
 Replace <dataset folder> with the path to your dataset.
 
-- `mobilevit_s`: model architecture, which can be replaced by `mobilevit_xxs`, `mobilevit_xs`, and `mobilevit_s`.
+- `mobilevit_xxs`: model architecture, which can be replaced by `mobilevit_xxs`, `mobilevit_xs`, and `mobilevit_s`.
 
 - `--quant`: whether to quantize the model.
 
