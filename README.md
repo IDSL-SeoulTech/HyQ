@@ -66,7 +66,7 @@ Replace <dataset folder> with the path to your dataset.
 
 ### MobileViTv1
 | Model | Method | Prec. (W/A) | Size (MB) | Top-1 Acc. (%) | Acc. Drop (%) |
-|:-----:|:------:|:-----------:|:---------:|:---------------:|:-------------:|
+|:-----:|:------:|:-----------:|:---------:|:--------------:|:-------------:|
 | MobileViT-xxs | Baseline | 32/32 | 1.27M | 68.94 | - |
 | | Ours | 8/8 | 0.32M | 68.15 | 0.79 |
 | MobileViT-xs | Baseline | 32/32 | 2.32M | 74.63 | - |
@@ -76,17 +76,17 @@ Replace <dataset folder> with the path to your dataset.
 
 ### EfficientFormer and MobileViTv2
 | Model | Method | Prec. (W/A) | Top-1 Acc. (%) | Acc. Drop (%) |
-|-------|--------|-------------|-----------------|---------------|
+|-------|--------|-------------|----------------|---------------|
 | EfficientFormer-L1 | Baseline | 32/32 | 80.50 | - |
 | | Ours | 8/8 | 78.55 | 1.95 |
 | EfficientFormer-L3 | Baseline | 32/32 | 82.55 | - |
 | | Ours | 8/8 | 82.26 | 0.29  |
-| EfficientFormer-L7 | Baseline  | 32/32 | 83.38 | -         |
-| | Ours      | 8/8   | 82.66 |  0.72     |
-| MobileViTv2-50 | Baseline  | 32/32 | 70.16 | -         |
-| | Ours      | 8/8   | 69.16 | 1.00      |
-| MobileViTv2-75 | Baseline | 32/32 | 75.61 | -         |
-| | Ours      | 8/8   | 74.47 | 1.14      |
+| EfficientFormer-L7 | Baseline | 32/32 | 83.38 | - |
+| | Ours | 8/8 | 82.66 | 0.72 |
+| MobileViTv2-50 | Baseline | 32/32 | 70.16 | - |
+| | Ours | 8/8 | 69.16 | 1.00 |
+| MobileViTv2-75 | Baseline | 32/32 | 75.61 | - |
+| | Ours | 8/8 | 74.47 | 1.14 |
 
 
 
