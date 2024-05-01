@@ -62,8 +62,8 @@ Replace <dataset folder> with the path to your dataset.
 ---
 
 
-###
-Fig.2(a) illustrates the QADS process. Initially, during the calibration step, an optimization process is conducted to determine the optimal QADS parameters using the MSE loss (as shown in the left side of Fig. \ref{figure2}(a)). Following the completion of calibration, the obtained QADS parameters are merged into the quantizer (as shown in the right side of Fig. \ref{figure2}(a)). Fig. \ref{figure2}(b) depicts the attention mechanism of the transformer. The left side depicts the conventional quantization method that processes softmax in FP32. In contrast, on the right side, the proposed linear softmax performs exponential operations on the INT32 input using only add operations.
+## Overview
+Fig. 2(a) illustrates the QADS process. Initially, during the calibration step, an optimization process is conducted to determine the optimal QADS parameters using the MSE loss (as shown on the left side of Fig. 2(a)). Following the completion of calibration, the obtained QADS parameters are merged into the quantizer (as shown on the right side of Fig. 2(a)). Fig. 2(b) depicts the attention mechanism of the transformer. The left side depicts the conventional quantization method that processes softmax in FP32. In contrast, on the right side, the proposed linear softmax performs exponential operations on the INT32 input using only add operations.
 ![image](https://github.com/IDSL-SeoulTech/HyQ/assets/50408754/739c8c07-0f8d-4b03-aaa2-5b059fb23f0d)
 
 
