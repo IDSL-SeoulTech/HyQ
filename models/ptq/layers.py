@@ -230,8 +230,7 @@ class QIntLayerNorm(nn.LayerNorm):
                 out_quantizer=None,
                 in_scale_expand=1):
         if self.mode == 'ln':
-                x = F.layer_norm(x, self.normalized_shape, self.weight, self.bias,
-                             self.eps)
+                x = F.layer_norm(x, self.normalized_shape, self.weight, self.bias, self.eps)
         elif self.mode == 'int':
             in_scale = in_quantizer.scale
             if in_scale_expand != 1:
@@ -265,7 +264,7 @@ class QIntLayerNorm(nn.LayerNorm):
             B = ((self.bias.reshape(1, 1, -1) -
                   (mean_x_q / std_x_q).unsqueeze(-1) *
                   self.weight.reshape(1, 1, -1)) / out_scale *
-                 torch.pow(2, N)).round()
+                torch.pow(2, N)).round()
 
             x_q = ((A_sign * M * x_q + B) / torch.pow(2, N)).round()
             x = x_q * out_scale
@@ -276,14 +275,14 @@ class QIntLayerNorm(nn.LayerNorm):
 class QIntSoftmax(nn.Module):
 
     def __init__(self,
-                 log_i_softmax=False,
-                 quant=False,
-                 calibrate=False,
-                 last_calibrate=False,
-                 bit_type=BIT_TYPE_DICT['int8'],
-                 calibration_mode='layer_wise',
-                 observer_str='minmax',
-                 quantizer_str='uniform'):
+                log_i_softmax=False,
+                quant=False,
+                calibrate=False,
+                last_calibrate=False,
+                bit_type=BIT_TYPE_DICT['int8'],
+                calibration_mode='layer_wise',
+                observer_str='minmax',
+                quantizer_str='uniform'):
         super(QIntSoftmax, self).__init__()
 
         self.log_i_softmax = log_i_softmax
@@ -297,9 +296,9 @@ class QIntSoftmax(nn.Module):
 
         self.module_type = 'activation'
         self.observer = build_observer(self.observer_str, self.module_type,
-                                       self.bit_type, self.calibration_mode)
+                                        self.bit_type, self.calibration_mode)
         self.quantizer = build_quantizer(self.quantizer_str, self.bit_type,
-                                         self.observer, self.module_type)
+                                        self.observer, self.module_type)
 
     @staticmethod
     def log_round(x):
@@ -334,7 +333,7 @@ class QIntSoftmax(nn.Module):
             z = z + c_int     # Alg 10
             scaling_factor = coef[0] * scaling_factor**2 # Alg 9
             return z, scaling_factor
-               
+
         def int_poly_8(x_int, scaling_factor):
             coef = [0.08947606, 0.12121466]
             coef[1] /= coef[0]
@@ -393,131 +392,5 @@ class QIntSoftmax(nn.Module):
             if not self.quant:          
                 return x
             x = self.quantizer(x)
-        
-            return x
-
-class QIntExp(nn.Module):
-    def __init__(self,
-                 log_i_softmax=False,
-                 quant=False,
-                 calibrate=False,
-                 last_calibrate=False,
-                 bit_type=BIT_TYPE_DICT['int8'],
-                 calibration_mode='layer_wise',
-                 observer_str='minmax',
-                 quantizer_str='uniform'):
-        super(QIntExp, self).__init__()
-
-        self.log_i_softmax = log_i_softmax
-        self.quant = quant
-        self.calibrate = calibrate
-        self.last_calibrate = last_calibrate
-        self.bit_type = bit_type
-        self.calibration_mode = calibration_mode
-        self.observer_str = observer_str
-        self.quantizer_str = quantizer_str
-
-        self.module_type = 'activation'
-        self.observer = build_observer(self.observer_str, self.module_type,
-                                       self.bit_type, self.calibration_mode)
-        self.quantizer = build_quantizer(self.quantizer_str, self.bit_type,
-                                         self.observer, self.module_type)
-        self.gate_layer = nn.Hardsigmoid()
-    
-    @staticmethod
-    def log_round(x):
-        x_log_floor = x.log2().floor()
-        big = x_log_floor
-        extra_mask = (x - 2**big) >= 2**(big - 1)
-        big[extra_mask] = big[extra_mask] + 1
-        return big
-    
-    @staticmethod
-    def int_exp(x_se, shortcut, scaling_factor):
-        def int_polynomial(x_int, scaling_factor):
-            coef = [0.35815147, 0.96963238, 1.]  # ax**2 + bx + c
-            coef[1] /= coef[0]
-            coef[2] /= coef[0]
-            b_int = torch.floor(coef[1] / scaling_factor) # Alg 8
-            c_int = torch.floor(coef[2] / scaling_factor**2) # Alg 8
-            z = x_int + b_int # Alg 10
-            z = x_int * z     # Alg 10
-            z = z + c_int     # Alg 10
-            scaling_factor = coef[0] * scaling_factor**2 # Alg 9
-            return z, scaling_factor
-        def int_exp_second(x_int, scaling_factor):
-
-            x0 = -0.6931  # -ln2
-            n = 30  # sufficiently large integer
-            x0_int = torch.floor(x0 / scaling_factor) # Alg 4
-                        
-            x_int = torch.max(x_int, n * x0_int) # Alg 5
-            q = torch.floor(x_int / x0_int) # Alg 6            
-            r = x_int - x0_int * q # Alg 7
-            exp_int, exp_scaling_factor = int_polynomial(r, scaling_factor) # Alg 8~10
-
-
-            exp_int = torch.clamp(torch.floor(exp_int * 2**(n - q)), min=0) # Alg 11
-            
-            scaling_factor = exp_scaling_factor / 2**n # Alg 11
-            return exp_int, scaling_factor
- 
-        def int_poly_16(x_int, scaling_factor):
-            coef = [0.04473803, 0.06060733]
-            coef[1] /= coef[0]
-            b_int = torch.floor(coef[1] / scaling_factor) # Alg 8
-            z = x_int + b_int # Alg 10
-            scaling_factor = coef[0] * scaling_factor # Alg 9
-                        
-            return z, scaling_factor
-
-        def int_exp_first_16(x_int, scaling_factor):
-            x0 = -0.6931  # -ln2
-            n = 30  # sufficiently large integer
-            x0_int = torch.floor(x0 / scaling_factor) # Alg 4
-                        
-            x_int = torch.max(x_int, n * x0_int) # Alg 5
-            q = torch.floor(x_int / x0_int)# Alg 6            
-            r = x_int - x0_int * q # Alg 7
-            exp_int, exp_scaling_factor = int_poly_16(r, scaling_factor) # Alg 8~10
-
-            exp_int = torch.clamp(torch.floor(exp_int * 2**(n - q)), min=0) # Alg 11
-            
-            scaling_factor = exp_scaling_factor / 2**n # Alg 11
-            return exp_int, scaling_factor
-
-        ## Add Round 
-        x_int = (x_se / scaling_factor)
-        
-        x_int_max, _ = x_int.max(dim=-1, keepdim=True)
-        x_int = x_int - x_int_max
-
-        exp_int, exp_scaling_factor = int_exp_first_16(x_int, scaling_factor)
-        exp_int_max, exp_scaling_factor_max = int_exp_first_16(-x_int_max, scaling_factor)
-
-        exp_int = exp_int * exp_scaling_factor
-        exp_int_max = exp_int_max * exp_scaling_factor_max
-        # print(exp_scaling_factor, exp_scaling_factor_max)
-        
-        exp_int_sum = exp_int + exp_int_max
-        
-        return exp_int, exp_int_sum
-
-    def forward(self, x, shortcut, scale):
-        if self.log_i_softmax and scale is not None:
-            exp_int, exp_int_sum = self.int_exp(x, shortcut, scale)
-            sigmoid = exp_int / exp_int_sum
-            
-            return sigmoid
-        else:
-            #Holding Hardsigmoid or Sigmoid
-            x = self.gate_layer(x)            
-            
-            if self.calibrate:
-                self.quantizer.observer.update(x)
-                if self.last_calibrate:
-                    self.quantizer.update_quantization_params(x)
-            if not self.quant:          
-                return x
         
             return x
