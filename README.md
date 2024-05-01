@@ -76,7 +76,7 @@ Replace <dataset folder> with the path to your dataset.
 
 ### EfficientFormer and MobileViTv2
 | Model | Method | Prec. (W/A) | Top-1 Acc. (%) | Acc. Drop (%) |
-|-------|--------|-------------|----------------|---------------|
+|:-----:|:------:|:-----------:|:--------------:|:-------------:|
 | EfficientFormer-L1 | Baseline | 32/32 | 80.50 | - |
 | | Ours | 8/8 | 78.55 | 1.95 |
 | EfficientFormer-L3 | Baseline | 32/32 | 82.55 | - |
