@@ -1,6 +1,8 @@
 # HyQ: Hardware-Friendly Post-Training-Quantization for CNN-Transformer Hybrid Networks
 HyQ is a set of techniques designed for quantizing CNN-transformer hybrid models in a hardware-friendly way. This repository contains the official source code used to run experiments for the paper.
 
+![image](https://github.com/IDSL-SeoulTech/HyQ/assets/50408754/739c8c07-0f8d-4b03-aaa2-5b059fb23f0d)
+
 ## Abstract
 Hybrid models that combine convolutional neural networks (CNNs) and vision transformers (ViTs) have recently emerged as state-of-the-art computer vision models. To efficiently deploy these hybrid models involving significant amounts of parameters on resource-constrained mobile/edge devices, quantization is emerging as a promising solution. However, post-training quantization (PTQ), which does not require retraining or labeled data, has not been extensively studied for hybrid models. 
 %Furthermore, owing to the complex structure of the hybrid model that combines both convolutions and transformer blocks, quantizing hybrid models using existing methods results in significant accuracy drops. 
@@ -61,10 +63,6 @@ Replace <dataset folder> with the path to your dataset.
 
 ---
 
-
-## Overview
-Fig. 2(a) illustrates the QADS process. Initially, during the calibration step, an optimization process is conducted to determine the optimal QADS parameters using the MSE loss (as shown on the left side of Fig. 2(a)). Following the completion of calibration, the obtained QADS parameters are merged into the quantizer (as shown on the right side of Fig. 2(a)). Fig. 2(b) depicts the attention mechanism of the transformer. The left side depicts the conventional quantization method that processes softmax in FP32. In contrast, on the right side, the proposed linear softmax performs exponential operations on the INT32 input using only add operations.
-![image](https://github.com/IDSL-SeoulTech/HyQ/assets/50408754/739c8c07-0f8d-4b03-aaa2-5b059fb23f0d)
 
 
 ### Table 1: Comparison of top-1 accuracy with other quantization methods on the ImageNet-1k dataset
