@@ -65,14 +65,18 @@ Replace <dataset folder> with the path to your dataset.
 ## Experiments
 
 ### MobileViTv1
-| Model | Method | Prec. (W/A) | Size (MB) | Top-1 Acc. (%) | Acc. Drop (%) |   
-|-------|--------|-------------|-----------|------|-----| 
-| MobileViT-xxs | Baseline | 32/32 | 1.27M | 68.94 | - |    
-|               | Ours       | 8/8 | 0.32M | 68.15 | 0.79 | 
-| MobileViT-xs  | Baseline | 32/32 | 2.32M | 74.63 | - |    
-|               | Ours       | 8/8 | 0.58M | 73.99 | 0.64 | 
-| MobileViT-s   | Baseline | 32/32 | 5.58M | 78.32 | - |    
-|               | Ours       | 8/8 | 1.40M | 77.93 | 0.39 | 
+<center>
+
+| Model | Method | Prec. (W/A) | Size (MB) | Top-1 Acc. (%) | Acc. Drop (%) |
+|:-----:|:------:|:-----------:|:---------:|:---------------:|:-------------:|
+| MobileViT-xxs | Baseline | 32/32 | 1.27M | 68.94 | - |
+| | Ours | 8/8 | 0.32M | 68.15 | 0.79 |
+| MobileViT-xs | Baseline | 32/32 | 2.32M | 74.63 | - |
+| | Ours | 8/8 | 0.58M | 73.99 | 0.64 |
+| MobileViT-s | Baseline | 32/32 | 5.58M | 78.32 | - |
+| | Ours | 8/8 | 1.40M | 77.93 | 0.39 |
+
+</center>
 
 ### EfficientFormer and MobileViTv2
 | Model | Method | Prec. (W/A) | Top-1 Acc. (%) | Acc. Drop (%) |
