@@ -61,12 +61,10 @@ Replace <dataset folder> with the path to your dataset.
 
 - `--quant-method`: quantization methods of activations, which can be chosen from `minmax`, `ema`, `percentile` and `omse`.
 
----
 
+## Experiments
 
-
-### Table 1: Comparison of top-1 accuracy with other quantization methods on the ImageNet-1k dataset
-
+### MobileViTv1
 | Model | Method | Prec. (W/A) | Size (MB) | Top-1 Acc. (%) | Acc. Drop (%) |   
 |-------|--------|-------------|-----------|------|-----| 
 | MobileViT-xxs | Baseline | 32/32 | 1.27M | 68.94 | - |    
@@ -88,8 +86,7 @@ Replace <dataset folder> with the path to your dataset.
 |               | Q-HyViT    | 8/8 | 1.40M | 77.72 | 0.59 | 
 |               | Ours       | 8/8 | 1.40M | 77.93 | 0.39 | 
 
-## Table 2: Performance comparison of HyQ using state-of-the-art hybrid models (i.e., EfficientFormer and MobileViTv2) on ImageNet-1k dataset
-
+### EfficientFormer and MobileViTv2
 | Model | Method | Prec. (W/A) | Top-1 Acc. (%) | Acc. Drop (%) |
 |-------|--------|-------------|-----------------|---------------|
 | EfficientFormer-L1 | Baseline | 32/32 | 80.50 | - |
