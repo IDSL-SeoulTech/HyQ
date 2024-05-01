@@ -60,20 +60,10 @@ Replace <dataset folder> with the path to your dataset.
 - `--quant-method`: quantization methods of activations, which can be chosen from `minmax`, `ema`, `percentile` and `omse`.
 
 ---
----
 
 
 ### Figure 2: Overview of the proposed HyQ. (a) The QADS optimization process. First, a calibration set is used to determine the QADS parameters that minimize the difference between the FP32 and INT32 outputs. The obtained QADS parameters are then merged into the existing quantizer module. (b) Attention operation using conventional quantization (Left) vs. attention operation using the proposed linear softmax (Right).
 ![figure2](./figures/figure2.png)
-
-
-
-
-| Figure 1: Comparison of Top-1 accuracy drop with various quantization methods and our proposed HyQ on the ImageNet-1k dataset for MobileViTs and EfficientFormers. All weights and activations were quantized to 8-bit integers (INT8). | Figure 3: Input activation histograms of the third convolution layer in the MBConv blocks of MobileViT-xxs. The x-axis and y-axis represent the input values and the count, respectively. The yellow dotted lines indicate the quantization bins when quantizing the input activation to 4-bit using min-max quantization. |
-| ------------ | ----- | 
-| <img src="./figures/figure1.png" width="1000"/> | <img src="./figures/figure3.png" width="800"/> |
-
-
 
 
 ### Table 1: Comparison of top-1 accuracy with other quantization methods on the ImageNet-1k dataset
