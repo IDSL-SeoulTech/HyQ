@@ -87,6 +87,8 @@ Replace <dataset folder> with the path to your dataset.
 | MobileViTv2-75 | Baseline | 32/32 | 75.61 | - |
 | | Ours | 8/8 | 74.47 | 1.14 |
 
+## Citation
+If you find this repo useful in your research, please consider citing the following paper:
 
 ## Contributing
 
