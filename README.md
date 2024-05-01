@@ -62,9 +62,10 @@ Replace <dataset folder> with the path to your dataset.
 ---
 
 
-### Figure 2: Overview of the proposed HyQ. (a) The QADS optimization process. First, a calibration set is used to determine the QADS parameters that minimize the difference between the FP32 and INT32 outputs. The obtained QADS parameters are then merged into the existing quantizer module. (b) Attention operation using conventional quantization (Left) vs. attention operation using the proposed linear softmax (Right).
+###
+Fig.2(a) illustrates the QADS process. Initially, during the calibration step, an optimization process is conducted to determine the optimal QADS parameters using the MSE loss (as shown in the left side of Fig. \ref{figure2}(a)). Following the completion of calibration, the obtained QADS parameters are merged into the quantizer (as shown in the right side of Fig. \ref{figure2}(a)). Fig. \ref{figure2}(b) depicts the attention mechanism of the transformer. The left side depicts the conventional quantization method that processes softmax in FP32. In contrast, on the right side, the proposed linear softmax performs exponential operations on the INT32 input using only add operations.
 ![figure2](./figures/figure2.png)
-
+Figure 2: Overview of the proposed HyQ. (a) The QADS optimization process. First, a calibration set is used to determine the QADS parameters that minimize the difference between the FP32 and INT32 outputs. The obtained QADS parameters are then merged into the existing quantizer module. (b) Attention operation using conventional quantization (Left) vs. attention operation using the proposed linear softmax (Right).
 
 ### Table 1: Comparison of top-1 accuracy with other quantization methods on the ImageNet-1k dataset
 
